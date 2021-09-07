@@ -1,2 +1,2 @@
 # Medium-Articles
-Code I use in my medium blog/articles.
+This contains code that I use for my blog on medium.
