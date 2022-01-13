@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-# coding: utf-8
 
-# In[1]:
+# 4 easy ways to tokenize your data
 
 
 # ------- python method ---------
@@ -37,10 +36,6 @@ tokens
 
 from gensim.utils import tokenize
 list(tokenize(string))
-
-
-# In[ ]:
-
 
 
 
