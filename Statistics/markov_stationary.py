@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # set the one-step transition
-transition_matrix =  np.array([[0, 0.5, 0.5],
-                               [0.4, 0.3, 0.3],
-                               [0.6, 0.2, 0.2]])
+transition_matrix =  np.array([[0, 0.4, 0.6],
+                               [0.5, 0.3, 0.2],
+                               [0.5, 0.3, 0.2]])
 
 # equilibrium for transition matrix
 arr = transition_matrix
