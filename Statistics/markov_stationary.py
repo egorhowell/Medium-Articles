@@ -37,7 +37,7 @@ def plot(steps, x, axes,title):
     axes.set_xlabel('Steps', fontsize=14)
     axes.set_ylabel('Probability', fontsize=14)
     
-    for tick in axes.xaxis.get_majorticklabels().: 
+    for tick in axes.xaxis.get_majorticklabels(): 
         tick.set_fontsize(14) 
         
     for tick in axes.yaxis.get_majorticklabels(): 
