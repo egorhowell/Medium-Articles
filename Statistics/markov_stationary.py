@@ -2,12 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # ------------------------------------------------
-# set the one-step transition
+# Set the one-step transition
 transition_matrix =  np.array([[0, 0.4, 0.6],
                                [0.5, 0.3, 0.2],
                                [0.5, 0.3, 0.2]])
 
-# equilibrium for transition matrix
+# Equilibrium for transition matrix
 arr = transition_matrix
 
 for _ in range(50):
@@ -18,7 +18,7 @@ for _ in range(50):
 print(arr)
    
 # ------------------------------------------------  
-# for a given starting distribution
+# For a given starting distribution
 initial_dist = np.array([1,0,0])
 
 for _ in range(100):
