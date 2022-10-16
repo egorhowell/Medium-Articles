@@ -63,4 +63,4 @@ def adf_test(series):
         print('\t%s: %.2f' % (key, value))
 
 
-adf_test(data["Open_Diff"][1:])
+adf_test(data["Open_Diff_Log"][1:])
