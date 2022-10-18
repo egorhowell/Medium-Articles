@@ -57,13 +57,11 @@ plotting_stock_price(title='Airline Passengers', data=data,
 def adf_test(series):
     """Using an ADF test to determine if a series is stationary"""
     test_results = adfuller(series)
-    print("")
-    print('ADF Statistic: %f' % test_results[0])
-    print('P-Value: %f' % test_results[1])
+    print('ADF Statistic: ', test_results[0])
+    print('P-Value: ', test_results[1])
     print('Critical Values:')
-    for key, value in test_results[4].items():
-        print('\t%s: %.2f' % (key, value))
-    print("")
+    for thres, adf_stat in test_results[4].items():
+        print('\t%s: %.2f' % (thres, adf_stat))
 
 
-adf_test(data["Passenger_Diff_Log"][1:])
+adf_test(data["Open_Diff_Log"][1:])
