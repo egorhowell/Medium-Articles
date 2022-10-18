@@ -1,18 +1,15 @@
 # Import packages
 import plotly.express as px
-import yfinance as yf
+import pandas as pd
 import os
 from statsmodels.tsa.stattools import adfuller
 import numpy as np
 
 # Read in the data
-msft = yf.Ticker("MSFT")
-data = msft.history(period='10Y')
-data.reset_index(inplace=True)
-
+data = pd.read_csv('AirPassengers.csv')
 
 def plotting_stock_price(title, data, x, y, save_file_path, x_label, y_label):
-    """General function to plot the stock data."""
+    """General function to plot the temperature data."""
     fig = px.line(data, x=data[x], y=data[y], labels={x: x_label, y: y_label})
 
     fig.update_layout(template="simple_white", font=dict(size=18),
@@ -27,29 +24,33 @@ def plotting_stock_price(title, data, x, y, save_file_path, x_label, y_label):
     fig.show()
 
 
-# Plot the stock data
-plotting_stock_price(title='Microsoft Stock Price', data=data, save_file_path='stock_price.png', x='Date',
-                     y='Open', x_label='Date', y_label='Open Price ($)')
+# Plot the airline passenger data
+plotting_stock_price(title='Airline Passengers', data=data, save_file_path='passengers.png', x='Month',
+                     y='#Passengers', x_label='Date', y_label='Passengers')
+
 
 # Take the difference and plot it
-data["Open_Diff"] = data["Open"].diff()
+data["Passenger_Diff"] = data["#Passengers"].diff()
 
-plotting_stock_price(title='Microsoft Stock Price', data=data,
-                     save_file_path='stock_price_one_difference.png', x='Date', y='Open_Diff', x_label='Date',
-                     y_label='Open Price<br>Difference Transform<br>($)')
+plotting_stock_price(title='Airline Passengers', data=data,
+                     save_file_path='passengers_one_difference.png', x='Month', y='Passenger_Diff',
+                     x_label='Date', y_label='Passengers<br>Difference Transform')
+
 
 # Take the log and plot it
-data["Open_Log"] = np.log(data["Open"])
+data["Passenger_Log"] = np.log(data["#Passengers"])
 
-plotting_stock_price(title='Microsoft Stock Price', data=data, save_file_path='stock_price_log.png',
-                     x='Date', y='Open_Log', x_label='Date', y_label='Open Price<br>Log Transform<br>($)')
+plotting_stock_price(title='Airline Passengers', data=data,
+                     save_file_path='passenger_log.png', x='Month',
+                     y='Passenger_Log', x_label='Date', y_label='Passenger<br>Log Transform')
+
 
 # Take the difference and log and plot it
-data["Open_Diff_Log"] = data["Open_Log"].diff()
+data["Passenger_Diff_Log"] = data["Passenger_Log"].diff()
 
-plotting_stock_price(title='Microsoft Stock Price', data=data,
-                     save_file_path='stock_price_one_difference_and_log.png', x='Date', y='Open_Diff_Log',
-                     x_label='Date', y_label='Open Price<br>Log and Difference<br>Transform($)')
+plotting_stock_price(title='Airline Passengers', data=data,
+                     save_file_path='passenger_difference_and_log.png', x='Month',
+                     y='Passenger_Diff_Log', x_label='Date', y_label='Passenger<br>Log and Difference')
 
 
 # ADF test
