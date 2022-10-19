@@ -8,8 +8,9 @@ import numpy as np
 # Read in the data
 data = pd.read_csv('AirPassengers.csv')
 
-def plotting_stock_price(title, data, x, y, save_file_path, x_label, y_label):
-    """General function to plot the temperature data."""
+
+def plotting(title, data, x, y, save_file_path, x_label, y_label):
+    """General function to plot the passenger data."""
     fig = px.line(data, x=data[x], y=data[y], labels={x: x_label, y: y_label})
 
     fig.update_layout(template="simple_white", font=dict(size=18),
@@ -25,32 +26,32 @@ def plotting_stock_price(title, data, x, y, save_file_path, x_label, y_label):
 
 
 # Plot the airline passenger data
-plotting_stock_price(title='Airline Passengers', data=data, save_file_path='passengers.png', x='Month',
-                     y='#Passengers', x_label='Date', y_label='Passengers')
+plotting(title='Airline Passengers', data=data, save_file_path='passengers.png', x='Month',
+         y='#Passengers', x_label='Date', y_label='Passengers')
 
 
 # Take the difference and plot it
 data["Passenger_Diff"] = data["#Passengers"].diff()
 
-plotting_stock_price(title='Airline Passengers', data=data,
-                     save_file_path='passengers_one_difference.png', x='Month', y='Passenger_Diff',
-                     x_label='Date', y_label='Passengers<br>Difference Transform')
+plotting(title='Airline Passengers', data=data,
+         save_file_path='passengers_one_difference.png', x='Month', y='Passenger_Diff',
+         x_label='Date', y_label='Passengers<br>Difference Transform')
 
 
 # Take the log and plot it
 data["Passenger_Log"] = np.log(data["#Passengers"])
 
-plotting_stock_price(title='Airline Passengers', data=data,
-                     save_file_path='passenger_log.png', x='Month',
-                     y='Passenger_Log', x_label='Date', y_label='Passenger<br>Log Transform')
+plotting(title='Airline Passengers', data=data,
+         save_file_path='passenger_log.png', x='Month',
+         y='Passenger_Log', x_label='Date', y_label='Passenger<br>Log Transform')
 
 
 # Take the difference and log and plot it
 data["Passenger_Diff_Log"] = data["Passenger_Log"].diff()
 
-plotting_stock_price(title='Airline Passengers', data=data,
-                     save_file_path='passenger_difference_and_log.png', x='Month',
-                     y='Passenger_Diff_Log', x_label='Date', y_label='Passenger<br>Log and Difference')
+plotting(title='Airline Passengers', data=data,
+         save_file_path='passenger_difference_and_log.png', x='Month',
+         y='Passenger_Diff_Log', x_label='Date', y_label='Passenger<br>Log and Difference')
 
 
 # ADF test
