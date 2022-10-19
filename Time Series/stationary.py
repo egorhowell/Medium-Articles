@@ -65,4 +65,4 @@ def adf_test(series):
         print('\t%s: %.2f' % (thres, adf_stat))
 
 
-adf_test(data["Open_Diff_Log"][1:])
+adf_test(data["Passenger_Diff_Log"][1:])
