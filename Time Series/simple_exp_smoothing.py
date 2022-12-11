@@ -31,8 +31,7 @@ def plot_func(forecast: list[float], title: str, save_path: str) -> None:
 
 
 # Fit model and get forecasts
-model = SimpleExpSmoothing(train['#Passengers'], initialization_method='heuristic').fit(optimized=True)
-print(model.summary())
+model = SimpleExpSmoothing(train['#Passengers']).fit(optimized=True)
 forecasts = model.forecast(len(test))
 
 # Plot the forecasts
