@@ -2,7 +2,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 import os
-from statsmodels.tsa.holtwinters import SimpleExpSmoothing, Holt
+from statsmodels.tsa.holtwinters import SimpleExpSmoothing, Holt, ExponentialSmoothing
 
 # Read in the data
 data = pd.read_csv('AirPassengers.csv')
@@ -15,14 +15,16 @@ test = data.iloc[-int(len(data) * 0.2):]
 
 def plot_func(forecast1: list[float],
               forecast2: list[float],
+              forecast3: list[float],
               title: str,
               save_path: str) -> None:
     """Function to plot the forecasts."""
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=train['Month'], y=train['#Passengers'], name='Train'))
-    fig.add_trace(go.Scatter(x=test['Month'], y=test['#Passengers'], name='Test'))
+    fig.add_trace(go.Scatter(x=test['Month'], y=test['#Passengers'], name='Train'))
     fig.add_trace(go.Scatter(x=test['Month'], y=forecast1, name='Simple'))
     fig.add_trace(go.Scatter(x=test['Month'], y=forecast2, name='Holt'))
+    fig.add_trace(go.Scatter(x=test['Month'], y=forecast3, name='Holt-Winters'))
     fig.update_layout(template="simple_white", font=dict(size=18), title_text=title,
                       width=650, title_x=0.5, height=400, xaxis_title='Date',
                       yaxis_title='Passenger Volume')
@@ -42,5 +44,11 @@ forecasts_simple = model_simple.forecast(len(test))
 model_holt = Holt(train['#Passengers'], damped_trend=True).fit(optimized=True)
 forecasts_holt = model_holt.forecast(len(test))
 
+# Fit Holt Winters model and get forecasts
+model_holt_winters = ExponentialSmoothing(train['#Passengers'], damped_trend=True, trend='mul',
+                                          seasonal='mul', seasonal_periods=12)\
+    .fit(optimized=True)
+forecasts_holt_winters = model_holt_winters.forecast(len(test))
+
 # Plot the forecasts
-plot_func(forecasts_simple, forecasts_holt, "Holt's Exponential Smoothing", 'result.png')
+plot_func(forecasts_simple, forecasts_holt, forecasts_holt_winters,  "Holt-Winters Exponential Smoothing", 'result.png')
