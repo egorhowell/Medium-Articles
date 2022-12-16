@@ -21,7 +21,7 @@ def plot_func(forecast1: list[float],
     """Function to plot the forecasts."""
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=train['Month'], y=train['#Passengers'], name='Train'))
-    fig.add_trace(go.Scatter(x=test['Month'], y=test['#Passengers'], name='Train'))
+    fig.add_trace(go.Scatter(x=test['Month'], y=test['#Passengers'], name='Test'))
     fig.add_trace(go.Scatter(x=test['Month'], y=forecast1, name='Simple'))
     fig.add_trace(go.Scatter(x=test['Month'], y=forecast2, name="Holt's Linear"))
     fig.add_trace(go.Scatter(x=test['Month'], y=forecast3, name='Holt Winters'))
@@ -33,7 +33,7 @@ def plot_func(forecast1: list[float],
         os.mkdir("images")
 
     fig.write_image("images/" + str(save_path))
-    return fig.show()
+    return fig
 
 
 # Fit simple model and get forecasts
@@ -48,6 +48,7 @@ forecasts_holt = model_holt.forecast(len(test))
 model_holt_winters = ExponentialSmoothing(train['#Passengers'], trend='mul',
                                           seasonal='mul', seasonal_periods=12)\
                                           .fit(optimized=True)
+print(model_holt_winters.summary())
 forecasts_holt_winters = model_holt_winters.forecast(len(test))
 
 # Plot the forecasts
