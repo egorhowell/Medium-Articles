@@ -33,7 +33,7 @@ def plot_func(forecast1: list[float],
         os.mkdir("images")
 
     fig.write_image("images/" + str(save_path))
-    return fig
+    return fig.show()
 
 
 # Fit simple model and get forecasts
