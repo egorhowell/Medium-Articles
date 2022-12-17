@@ -46,6 +46,9 @@ train['fittedvalues'] = model.fittedvalues
 train['residuals'] = model.resid
 print(train)
 
+
+
+# Plot histogram of the residuals
 fig = px.histogram(train, x="residuals")
 fig.update_layout(template="simple_white", font=dict(size=18), title_text='Distribution of Residuals',
                   width=700, title_x=0.5, height=400, xaxis_title='Residuals', yaxis_title='Count')
