@@ -4,6 +4,10 @@ import plotly.express as px
 import pandas as pd
 import os
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from statsmodels.graphics.tsaplots import plot_pacf, plot_acf
+import matplotlib.pyplot as plt
+from statsmodels.stats.diagnostic import acorr_ljungbox
+
 
 # Read in the data
 data = pd.read_csv('AirPassengers.csv')
@@ -34,22 +38,33 @@ def plot_func(forecast: list[float],
 
 
 # Fit Holt Winters model and get forecasts
-model = ExponentialSmoothing(train['#Passengers'], trend='mul', seasonal='mul', seasonal_periods=12)\
+model = ExponentialSmoothing(train['#Passengers'], trend='mul', seasonal='mul', seasonal_periods=12) \
     .fit(optimized=True)
 forecasts = model.forecast(len(test))
 
 # Plot the forecasts
-#plot_func(forecasts,  "Holt Winters Forecast", 'result.png')
+plot_func(forecasts,  "Holt Winters Forecast", 'result.png')
 
 # Residual analysis
 train['fittedvalues'] = model.fittedvalues
 train['residuals'] = model.resid
-print(train)
+# print(train)
 
+# Plot ACF and PACF
+fig, ax = plt.subplots(1,2,figsize=(8,3))
+plot_acf(train['residuals'], lags=30, ax=ax[0])
+ax[0].set_xlabel('Lags')
+plot_pacf(train['residuals'], lags=30, ax=ax[1])
+ax[1].set_xlabel('Lags')
+plt.tight_layout()
+plt.show()
 
+# Carry out Ljung-Box test
+print(acorr_ljungbox(train['residuals'], return_df=True))
 
 # Plot histogram of the residuals
 fig = px.histogram(train, x="residuals")
 fig.update_layout(template="simple_white", font=dict(size=18), title_text='Distribution of Residuals',
                   width=700, title_x=0.5, height=400, xaxis_title='Residuals', yaxis_title='Count')
+fig.write_image("images/" + "histogram.png")
 fig.show()
