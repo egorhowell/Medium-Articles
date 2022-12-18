@@ -48,7 +48,7 @@ plot_func(forecasts,  "Holt Winters Forecast", 'result.png')
 # Residual analysis
 train['fittedvalues'] = model.fittedvalues
 train['residuals'] = model.resid
-# print(train)
+print(train)
 
 # Plot ACF and PACF
 fig, ax = plt.subplots(1,2,figsize=(8,3))
@@ -57,6 +57,7 @@ ax[0].set_xlabel('Lags')
 plot_pacf(train['residuals'], lags=30, ax=ax[1])
 ax[1].set_xlabel('Lags')
 plt.tight_layout()
+plt.savefig('residual_acf.png')
 plt.show()
 
 # Carry out Ljung-Box test
