@@ -69,3 +69,6 @@ fig.update_layout(template="simple_white", font=dict(size=18), title_text='Distr
                   width=700, title_x=0.5, height=400, xaxis_title='Residuals', yaxis_title='Count')
 fig.write_image("images/" + "histogram.png")
 fig.show()
+
+# Mean of residuals
+print(train['residuals'].mean())
