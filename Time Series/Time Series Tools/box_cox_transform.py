@@ -5,7 +5,7 @@ import os
 from scipy.stats import boxcox
 
 # Read in the data
-data = pd.read_csv('AirPassengers.csv')
+data = pd.read_csv('../AirPassengers.csv')
 
 
 def plotting(title, data, x, y, save_file_path, x_label, y_label, text=False, lam=None):
@@ -22,8 +22,8 @@ def plotting(title, data, x, y, save_file_path, x_label, y_label, text=False, la
                            font=dict(size=20, color="black", family="Courier New, monospace"),
                            bordercolor='black', borderwidth=2, bgcolor="white")
 
-    if not os.path.exists("images"):
-        os.mkdir("images")
+    if not os.path.exists("../images"):
+        os.mkdir("../images")
 
     fig.write_image("images/" + str(save_file_path))
 

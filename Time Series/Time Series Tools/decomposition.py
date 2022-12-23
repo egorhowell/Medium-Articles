@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import boxcox
 
 # Read in the data
-data = pd.read_csv('AirPassengers.csv', index_col=0)
+data = pd.read_csv('../AirPassengers.csv', index_col=0)
 data.index = pd.to_datetime(data.index)
 
 # Plot the data
@@ -17,8 +17,8 @@ fig = px.line(data, x=data.index, y='#Passengers',
 fig.update_layout(template="simple_white", font=dict(size=18), title_text='Airline Passengers',
                   width=650, title_x=0.5, height=400)
 
-if not os.path.exists("images"):
-    os.mkdir("images")
+if not os.path.exists("../images"):
+    os.mkdir("../images")
 
 fig.write_image("images/" + str('passenger.png'))
 fig.show()

@@ -6,7 +6,7 @@ from statsmodels.graphics.tsaplots import plot_acf
 import matplotlib.pyplot as plt
 
 # Read in the data
-data = pd.read_csv('AirPassengers.csv')
+data = pd.read_csv('../AirPassengers.csv')
 
 # Plot the data
 fig = px.line(data, x='Month', y='#Passengers',
@@ -15,8 +15,8 @@ fig = px.line(data, x='Month', y='#Passengers',
 fig.update_layout(template="simple_white", font=dict(size=18), title_text='Airline Passengers',
                   width=650, title_x=0.5, height=400)
 
-if not os.path.exists("images"):
-    os.mkdir("images")
+if not os.path.exists("../images"):
+    os.mkdir("../images")
 
 fig.write_image("images/" + str('passenger.png'))
 fig.show()

@@ -10,7 +10,7 @@ from statsmodels.stats.diagnostic import acorr_ljungbox
 
 
 # Read in the data
-data = pd.read_csv('AirPassengers.csv')
+data = pd.read_csv('../AirPassengers.csv')
 data['Month'] = pd.to_datetime(data['Month'])
 
 # Split train and test
@@ -30,8 +30,8 @@ def plot_func(forecast: list[float],
                       width=700, title_x=0.5, height=400, xaxis_title='Date',
                       yaxis_title='Passenger Volume')
 
-    if not os.path.exists("images"):
-        os.mkdir("images")
+    if not os.path.exists("../images"):
+        os.mkdir("../images")
 
     fig.write_image("images/" + str(save_path))
     return fig.show()

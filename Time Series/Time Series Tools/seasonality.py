@@ -5,7 +5,7 @@ import os
 from statsmodels.tsa.stattools import adfuller
 
 # Read in the data
-data = pd.read_csv('AirPassengers.csv')
+data = pd.read_csv('../AirPassengers.csv')
 
 
 def plotting(title, data, x, y, save_file_path, x_label, y_label):
@@ -16,8 +16,8 @@ def plotting(title, data, x, y, save_file_path, x_label, y_label):
                       title_text=title, width=650,
                       title_x=0.5, height=400)
 
-    if not os.path.exists("images"):
-        os.mkdir("images")
+    if not os.path.exists("../images"):
+        os.mkdir("../images")
 
     fig.write_image("images/" + str(save_file_path))
 
