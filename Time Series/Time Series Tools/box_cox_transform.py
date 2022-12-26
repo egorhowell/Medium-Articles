@@ -25,7 +25,7 @@ def plotting(title, data, x, y, save_file_path, x_label, y_label, text=False, la
     if not os.path.exists("../images"):
         os.mkdir("../images")
 
-    fig.write_image("images/" + str(save_file_path))
+    fig.write_image("../images/" + str(save_file_path))
 
     fig.show()
 

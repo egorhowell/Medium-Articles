@@ -18,7 +18,7 @@ fig.update_layout(template="simple_white", font=dict(size=18), title_text='Airli
 if not os.path.exists("../images"):
     os.mkdir("../images")
 
-fig.write_image("images/" + str('passenger.png'))
+fig.write_image("../images/" + str('passenger.png'))
 fig.show()
 
 # Plot autocorrelation
