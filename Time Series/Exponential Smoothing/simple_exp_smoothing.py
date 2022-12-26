@@ -26,7 +26,7 @@ def plot_func(forecast: list[float], title: str, save_path: str) -> None:
     if not os.path.exists("../images"):
         os.mkdir("../images")
 
-    fig.write_image("images/" + str(save_path))
+    fig.write_image("../images/" + str(save_path))
     return fig.show()
 
 
