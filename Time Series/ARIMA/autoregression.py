@@ -16,10 +16,11 @@ data['Month'] = pd.to_datetime(data['Month'])
 
 
 def plot_passenger_volumes(df: pd.DataFrame,
+                           y: str,
                            save_file_path: str) -> None:
     """General function to plot the passenger data."""
 
-    fig = px.line(df, x='Month', y='#Passengers', labels={'Month': 'Date', '#Passengers': 'Passengers'})
+    fig = px.line(df, x='Month', y=y, labels={'Month': 'Date'})
     fig.update_layout(template="simple_white", font=dict(size=18), title_text='Airline Passengers',
                       width=650, title_x=0.5, height=400)
 
@@ -31,12 +32,15 @@ def plot_passenger_volumes(df: pd.DataFrame,
 
 
 # Plot the airline passenger data
-# plot_passenger_volumes(df=data, save_file_path='passengers.png')
+plot_passenger_volumes(df=data, y='#Passengers', save_file_path='passengers_data.png')
 
 # Make the target stationary
 data['Passengers_boxcox'], lam = boxcox(data['#Passengers'])
 data["Passenger_stationary"] = data["Passengers_boxcox"].diff()
 data.dropna(inplace=True)
+
+# Plot the stationary airline passenger data
+plot_passenger_volumes(df=data, y='Passenger_stationary', save_file_path='passengers_data_stationary.png')
 
 
 # ADF test for stationary
@@ -50,18 +54,18 @@ def adf_test(series):
         print('\t%s: %.2f' % (threshold, adf_stat))
 
 
-adf_test(data["Passenger_stationary"])
+print(adf_test(data["Passenger_stationary"]))
 
 # Plot partial autocorrelation
-# plt.rc("figure", figsize=(11,5))
-# plot_pacf(data['Passenger_stationary'], method='ywm')
-# plt.xlabel('Lags', fontsize=18)
-# plt.ylabel('Correlation', fontsize=18)
-# plt.xticks(fontsize=18)
-# plt.yticks(fontsize=18)
-# plt.title('Partial Autocorrelation Plot', fontsize=20)
-# plt.tight_layout()
-# plt.show()
+plt.rc("figure", figsize=(11,5))
+plot_pacf(data['Passenger_stationary'], method='ywm')
+plt.xlabel('Lags', fontsize=18)
+plt.ylabel('Correlation', fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.title('Partial Autocorrelation Plot', fontsize=20)
+plt.tight_layout()
+plt.show()
 
 # Split train and test
 train = data.iloc[:-int(len(data) * 0.2)]
