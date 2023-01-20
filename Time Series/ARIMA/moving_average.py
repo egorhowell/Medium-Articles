@@ -4,10 +4,10 @@ import plotly.express as px
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+from statsmodels.graphics.tsaplots import plot_acf
+from statsmodels.tsa.arima.model import ARIMA
 from scipy.stats import boxcox
 from scipy.special import inv_boxcox
-from statsmodels.graphics.tsaplots import plot_pacf
-from statsmodels.tsa.stattools import adfuller
 
 # Read in the data
 data = pd.read_csv('../AirPassengers.csv')
@@ -41,28 +41,14 @@ data.dropna(inplace=True)
 # Plot the stationary airline passenger data
 plot_passenger_volumes(df=data, y='Passenger_stationary', save_file_path='passengers_data_stationary.png')
 
-
-# ADF test for stationary
-def adf_test(series):
-    """Using an ADF test to determine if a series is stationary"""
-    test_results = adfuller(series)
-    print('ADF Statistic: ', test_results[0])
-    print('P-Value: ', test_results[1])
-    print('Critical Values:')
-    for threshold, adf_stat in test_results[4].items():
-        print('\t%s: %.2f' % (threshold, adf_stat))
-
-
-print(adf_test(data["Passenger_stationary"]))
-
-# Plot partial autocorrelation
+# Plot autocorrelation
 plt.rc("figure", figsize=(11,5))
-plot_pacf(data['Passenger_stationary'], method='ywm')
+plot_acf(data['Passenger_stationary'])
 plt.xlabel('Lags', fontsize=18)
 plt.ylabel('Correlation', fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
-plt.title('Partial Autocorrelation Plot', fontsize=20)
+plt.title('Autocorrelation Plot', fontsize=20)
 plt.tight_layout()
 plt.show()
 
@@ -70,9 +56,8 @@ plt.show()
 train = data.iloc[:-int(len(data) * 0.2)]
 test = data.iloc[-int(len(data) * 0.2):]
 
-# Build AR model
-selector = ar_select_order(train['Passenger_stationary'], 15)
-model = AutoReg(train['Passenger_stationary'], lags=selector.ar_lags).fit()
+# Train model
+model = ARIMA(train['Passenger_stationary'], order=(0, 0, 13)).fit()
 
 # Get forecasts and convert to actual passenger volumes
 transformed_forecasts = list(model.forecast(steps=len(test)))
@@ -106,4 +91,4 @@ def plot_forecasts(forecasts: list[float], title: str, save_path: str) -> None:
 
 
 # Plot the forecasts
-plot_forecasts(forecasts, 'Autoregression', 'result.png')
+plot_forecasts(forecasts, 'Moving Average Model', 'result.png')
