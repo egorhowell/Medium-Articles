@@ -52,7 +52,6 @@ plt.title('Autocorrelation Plot', fontsize=20)
 plt.tight_layout()
 plt.show()
 
-
 # Split train and test
 train = data.iloc[:-int(len(data) * 0.2)]
 test = data.iloc[-int(len(data) * 0.2):]
