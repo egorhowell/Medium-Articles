@@ -8,8 +8,8 @@ import plotly.graph_objects as go
 import os
 
 # Generate random coordinates
-x = list(np.random.randint(0, 15, 15))
-y = list(np.random.randint(0, 15, 15))
+x = list(np.random.randint(0, 15, 20))
+y = list(np.random.randint(0, 15, 20))
 
 # Label each city from the alphabet
 letters_org = [chr(i) for i in range(ord('a'), ord('z') + 1)]
@@ -54,7 +54,7 @@ class SA:
 
     @staticmethod
     def cooling_temp(gamma, temp):
-        return gamma * temp
+        return gamma*temp
 
     @staticmethod
     def check_accept(temp, new_solution, current_solution):
