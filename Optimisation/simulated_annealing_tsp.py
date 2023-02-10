@@ -42,14 +42,14 @@ class SA:
     def total_distance(df):
 
         def euclidean_distance(x1, x2, y1, y2):
-            return np.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+            return np.sqrt((x1-x2)**2+(y1-y2)**2)
 
         distance = 0
         for idx in range(0, len(df)):
             if idx + 1 >= len(df):
                 break
-            distance += euclidean_distance(df['x'].loc[idx], df['x'].loc[idx + 1],
-                                           df['y'].loc[idx], df['y'].loc[idx + 1])
+            distance += euclidean_distance(df['x'].loc[idx], df['x'].loc[idx+1],
+                                           df['y'].loc[idx], df['y'].loc[idx+1])
         return distance
 
     @staticmethod
