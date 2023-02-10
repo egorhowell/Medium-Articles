@@ -64,6 +64,7 @@ class SA:
 
     @staticmethod
     def swap_elements(df):
+        df_new = df.copy()
         swap_list_indx = range(1, len(df) - 1)
 
         i = random.randint(swap_list_indx[0], swap_list_indx[-1])
@@ -73,9 +74,9 @@ class SA:
             while i == j:
                 j = random.randint(swap_list_indx[0], swap_list_indx[-1])
 
-        df.iloc[i], df.iloc[j] = df.iloc[j].copy(), df.iloc[i].copy()
+        df_new.iloc[i], df_new.iloc[j] = df_new.iloc[j].copy(), df_new.iloc[i].copy()
 
-        return df
+        return df_new
 
     def run(self):
 
@@ -106,8 +107,9 @@ class SA:
             best_scores.append(best)
 
             # stay or transition from state
-            if self.check_accept(new, current, temp):
+            if self.check_accept(temp, new, current):
                 df = df_new.copy()
+                current = new.copy()
 
             # update temperature
             temps.append(temp)
