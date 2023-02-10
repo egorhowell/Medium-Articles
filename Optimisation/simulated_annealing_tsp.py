@@ -61,6 +61,8 @@ class SA:
         prob = min(1, np.exp(-(new_solution - current_solution) / temp))
         if prob > random.uniform(0, 1):
             return True
+        else:
+            return False
 
     @staticmethod
     def swap_elements(df):
