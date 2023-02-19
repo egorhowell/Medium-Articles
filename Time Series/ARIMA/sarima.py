@@ -34,19 +34,16 @@ def plot_passenger_volumes(df: pd.DataFrame,
 # Plot the airline passenger data
 plot_passenger_volumes(df=data, y='#Passengers', save_file_path='passengers_data.png')
 
-# Make the datastationary
+# Make the data stationary
 data['Passengers_Boxcox'], lam = boxcox(data['#Passengers'])
-data.dropna(inplace=True)
-
-# Plot the stationary passenger data
-plot_passenger_volumes(df=data, y='Passengers_Boxcox', save_file_path='passengers_boxcox.png')
-
-# Make the mean stationary
 data["Passenger_diff"] = data["Passengers_Boxcox"].diff()
 data.dropna(inplace=True)
 
+# Plot the stationary passenger data
+plot_passenger_volumes(df=data, y='Passenger_diff', save_file_path='passengers_stationary.png')
+
 # Plot acf and pacf
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16,5), dpi=80)
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 5), dpi=80)
 plot_acf(data['Passenger_diff'])
 plot_pacf(data['Passenger_diff'], method='ywm')
 ax1.tick_params(axis='both', labelsize=12)
@@ -59,7 +56,8 @@ train = data.iloc[:-int(len(data) * 0.2)]
 test = data.iloc[-int(len(data) * 0.2):]
 
 # Build ARIMA model
-model = ARIMA(train['Passengers_Boxcox'], order=(12, 1, 12)).fit()
+model = ARIMA(train['Passengers_Boxcox'], order=(10, 1, 10),
+              seasonal_order=(1, 1, 1, 12)).fit()
 boxcox_forecasts = model.forecast(len(test))
 forecasts = inv_boxcox(boxcox_forecasts, lam)
 
@@ -72,7 +70,7 @@ def plot_forecasts(forecasts: list[float], title: str, save_path: str) -> None:
     fig.add_trace(go.Scatter(x=test['Month'], y=forecasts, name='Forecast'))
     fig.update_layout(template="simple_white", font=dict(size=18), title_text=title,
                       width=650, title_x=0.5, height=400, xaxis_title='Date',
-                      yaxis_title='Passenger Volume')
+                      yaxis_title='Passengers')
 
     if not os.path.exists("../images"):
         os.mkdir("../images")
@@ -82,4 +80,4 @@ def plot_forecasts(forecasts: list[float], title: str, save_path: str) -> None:
 
 
 # Plot the forecasts
-plot_forecasts(forecasts, 'ARIMA', 'result.png')
+plot_forecasts(forecasts, 'SARIMA', 'result.png')
