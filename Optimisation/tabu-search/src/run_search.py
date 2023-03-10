@@ -6,8 +6,8 @@ from tabu_search_module import TabuSearch
 import os
 
 # Generate some random city data
-x = list(np.random.randint(0, 15, 10))
-y = list(np.random.randint(0, 15, 10))
+x = list(np.random.randint(0, 15, 20))
+y = list(np.random.randint(0, 15, 20))
 
 # Generate labels for cities by alphabet
 letters_org = [chr(i) for i in range(ord('a'), ord('z') + 1)]

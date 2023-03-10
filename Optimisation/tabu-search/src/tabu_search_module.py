@@ -3,7 +3,9 @@ import numpy as np
 
 class TabuSearch:
 
-    def __init__(self, initial_solution: list, cities: dict):
+    def __init__(self,
+                 initial_solution: list,
+                 cities: dict):
         self.initial_solution = initial_solution
         self.cities = cities
 
