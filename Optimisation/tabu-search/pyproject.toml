@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "tabu-search"
+version = "0.1.0"
+description = ""
+authors = ["Egor <egor.howell@gousto.co.uk>"]
+readme = "README.md"
+packages = [{include = "tabu_search"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "^1.5.3"
+plotly = "^5.13.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
