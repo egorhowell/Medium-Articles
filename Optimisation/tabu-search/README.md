@@ -1,1 +1,3 @@
-This is some boiler plate code to run tabu search for the travelling salesman problem. I also played around with setting up a poetry environment for this little project as well!
+## Info
+- This is some boiler plate code to run the Tabu Search optimisation algorithm for the Travelling Salesman Problem.
+- There is also an accompanying poetry environment setup to run the code!
