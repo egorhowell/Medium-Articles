@@ -76,7 +76,7 @@ class HillClimb:
     def run_hill_climb(self,
                        iterations: int,
                        ) -> list:
-        """Running the tabu search."""
+        """Running the hill climb."""
 
         best_solution = self.initial_solution.copy()
 
