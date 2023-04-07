@@ -1,3 +1,4 @@
+# Import packages
 import plotly.graph_objects as go
 import numpy as np
 from faker import Faker
@@ -28,8 +29,8 @@ fig = go.Figure()
 fig.add_trace(go.Scatter(x=x, y=y, mode='lines+markers+text',
                          text=labels, textposition="top center",
                          textfont=dict(color='black'),
-                         marker=dict(size=8, color='rgb(51, 153, 255)'),
-                         line=dict(color='rgb(51, 153, 255)', width=1),
+                         marker=dict(size=8, color='blue'),
+                         line=dict(color='blue', width=1),
                          showlegend=False))
 
 # Add marker for the starting point
@@ -66,8 +67,8 @@ fig = go.Figure()
 fig.add_trace(go.Scatter(x=x, y=y, mode='lines+markers+text',
                          text=labels, textposition="top center",
                          textfont=dict(color='black'),
-                         marker=dict(size=8, color='rgb(51, 153, 255)'),
-                         line=dict(color='rgb(51, 153, 255)', width=1),
+                         marker=dict(size=8, color='blue'),
+                         line=dict(color='blue', width=1),
                          showlegend=False))
 
 # Add marker for the starting point
