@@ -2,15 +2,15 @@ program knapsack
 
     implicit none
     
-    integer, parameter :: n = 17
+    integer, parameter :: n = 22
     integer, parameter :: max_weight = 800
     integer :: i, j, k, m
     integer :: weight(n), value(n), subset(n), best_solution(n)
     integer :: total_weight, total_value, best_value
 
     ! initialize item weights and values
-    weight = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170]
-    value = [10, 2, 3, 4, 20, 68, 75, 58, 9, 29, 56, 43, 38, 91, 27, 33, 200]
+    weight = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220]
+    value = [10, 2, 3, 4, 20, 68, 75, 58, 9, 29, 56, 43, 38, 91, 27, 33, 200, 18, 300, 18, 400, 200]
 
     best_value = 0
 
