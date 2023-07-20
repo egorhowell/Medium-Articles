@@ -40,7 +40,7 @@ fig.update_layout(
     xaxis=dict(title='x (Smoothies)', range=[0, x_limit+10], tickfont=dict(size=16)),
     yaxis=dict(title='y (Coffees)', range=[0, y_limit+10], tickfont=dict(size=16)),
     showlegend=True,
-    legend=dict(font=dict(size=16))
+    legend=dict(font=dict(size=16)),
     template="simple_white",
     height=500,
     width=800,
