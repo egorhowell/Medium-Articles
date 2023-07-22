@@ -14,7 +14,7 @@ fig = go.Figure()
 
 fig.add_trace(go.Scatter(x=np.linspace(0, xy_limit, 100),
                          y=xy_limit - np.linspace(0, xy_limit, 100),
-                         mode='lines', line=dict(color='blue', width=4), name='x + y <= 120'))
+                         mode='lines', line=dict(color='blue', width=4), name='x + y <= 140'))
 
 fig.add_trace(go.Scatter(x=[0, xy_limit+10], y=[y_limit, y_limit],
                          mode='lines', line=dict(color='green', width=4), name='y <= 100'))
