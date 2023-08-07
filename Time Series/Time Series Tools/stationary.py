@@ -6,7 +6,7 @@ from statsmodels.tsa.stattools import adfuller
 import numpy as np
 
 # Read in the data
-data = pd.read_csv('../AirPassengers.csv')
+data = pd.read_csv('../../Software Engineering /make-example/AirPassengers.csv')
 
 
 def plotting(title, data, x, y, save_file_path, x_label, y_label):

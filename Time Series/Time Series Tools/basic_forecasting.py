@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 # Read in the data
-data = pd.read_csv('../AirPassengers.csv')
+data = pd.read_csv('../../Software Engineering /make-example/AirPassengers.csv')
 data['Month'] = pd.to_datetime(data['Month'])
 
 # Split train and test

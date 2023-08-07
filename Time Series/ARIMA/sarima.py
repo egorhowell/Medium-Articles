@@ -10,7 +10,7 @@ from statsmodels.graphics.tsaplots import plot_pacf, plot_acf
 from statsmodels.tsa.arima.model import ARIMA
 
 # Read in the data
-data = pd.read_csv('../AirPassengers.csv')
+data = pd.read_csv('../../Software Engineering /make-example/AirPassengers.csv')
 data['Month'] = pd.to_datetime(data['Month'])
 
 

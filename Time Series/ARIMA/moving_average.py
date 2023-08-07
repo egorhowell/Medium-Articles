@@ -10,7 +10,7 @@ from scipy.stats import boxcox
 from scipy.special import inv_boxcox
 
 # Read in the data
-data = pd.read_csv('../AirPassengers.csv')
+data = pd.read_csv('../../Software Engineering /make-example/AirPassengers.csv')
 data['Month'] = pd.to_datetime(data['Month'])
 
 

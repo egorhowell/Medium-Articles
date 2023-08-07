@@ -8,7 +8,7 @@ import pmdarima as pm
 import numpy as np
 
 # Read in the data
-data = pd.read_csv('../AirPassengers.csv')
+data = pd.read_csv('../../Software Engineering /make-example/AirPassengers.csv')
 data['Month'] = pd.to_datetime(data['Month'])
 data['month_num'] = data['Month'].dt.month
 

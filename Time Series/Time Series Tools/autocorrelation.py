@@ -6,7 +6,7 @@ from statsmodels.graphics.tsaplots import plot_acf
 import matplotlib.pyplot as plt
 
 # Read in the data
-data = pd.read_csv('../AirPassengers.csv')
+data = pd.read_csv('../../Software Engineering /make-example/AirPassengers.csv')
 
 # Plot the data
 fig = px.line(data, x='Month', y='#Passengers',

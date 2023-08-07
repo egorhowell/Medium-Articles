@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import boxcox
 
 # Read in the data
-data = pd.read_csv('../AirPassengers.csv', index_col=0)
+data = pd.read_csv('../../Software Engineering /make-example/AirPassengers.csv', index_col=0)
 data.index = pd.to_datetime(data.index)
 
 # Plot the data

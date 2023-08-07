@@ -10,7 +10,7 @@ from statsmodels.graphics.tsaplots import plot_pacf, plot_acf
 from statsmodels.tsa.arima.model import ARIMA
 
 # Read in the data
-data = pd.read_csv('../AirPassengers.csv')
+data = pd.read_csv('../../Software Engineering /make-example/AirPassengers.csv')
 data['Month'] = pd.to_datetime(data['Month'])
 
 
@@ -34,7 +34,7 @@ def plot_passenger_volumes(df: pd.DataFrame,
 # Plot the airline passenger data
 plot_passenger_volumes(df=data, y='#Passengers', save_file_path='passengers_data.png')
 
-# Make the datastationary
+# Make the data stationary
 data['Passengers_Boxcox'], lam = boxcox(data['#Passengers'])
 data.dropna(inplace=True)
 
