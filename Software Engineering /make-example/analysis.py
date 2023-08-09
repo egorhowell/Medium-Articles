@@ -1,4 +1,3 @@
-# Import packages
 import plotly.graph_objects as go
 import pandas as pd
 import os
@@ -23,6 +22,11 @@ def plot_forecasts(forecasts: list[float], title: str, save_path: str) -> None:
     fig.write_image("../images/" + str(save_path))
     return fig.show()
 
+
+# Read train, test, and forecasts data from CSV files
+train = pd.read_csv('train_data.csv')
+test = pd.read_csv('test_data.csv')
+forecasts = pd.read_csv('forecasts.csv')['Forecasts'].values
 
 # Plot the forecasts
 plot_forecasts(forecasts, 'ARIMA', 'result.png')

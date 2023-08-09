@@ -1,6 +1,6 @@
-# Import packages
 import pandas as pd
 from scipy.stats import boxcox
+import pickle
 
 # Read in the data
 data = pd.read_csv('AirPassengers.csv')
@@ -14,4 +14,9 @@ data.dropna(inplace=True)
 data["Passenger_diff"] = data["Passengers_Boxcox"].diff()
 data.dropna(inplace=True)
 
+# Pickle the lam variable
+with open('lam.pickle', 'wb') as f:
+    pickle.dump(lam, f)
+
+# Write data to file
 data.to_csv('clean_data.csv', index=False)

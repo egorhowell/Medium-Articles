@@ -1,13 +1,16 @@
-# Define our target as PHONY as it does not generate files
-.PHONY: hello
+.PHONY: all read_clean_data model analysis
 
-# Define our target
-hello:
-	echo "Hello World!"
+all: analysis
 
-# Define our target to generate a file
-data.csv:
-	touch data.csv
+read_clean_data:
+	python read_clean_data.py
 
+model: read_clean_data
+	python model.py
 
+analysis: model
+	python analysis.py
 
+.PHONY: clean
+clean:
+	rm -f clean_data.csv lam.pickle train_data.csv test_data.csv forecasts.csv
