@@ -94,3 +94,26 @@ if not os.path.exists("../images"):
 fig.write_image("../images/leaky_relu.png")
 
 fig.show()
+
+
+#  parabola
+def parabola(x):
+    return 10*x**2
+
+
+# x and y values
+x = np.linspace(-5, 5, 100)
+y = parabola(x)
+
+# Plot
+fig = px.line(x=x, y=y)
+fig.update_xaxes(title='x')
+fig.update_yaxes(title='10x^2')
+fig.update_layout(template="simple_white", font=dict(size=18), title_text='Example Parabola',
+                  width=650, title_x=0.5, height=400)
+
+if not os.path.exists("../images"):
+    os.mkdir("../images")
+fig.write_image("../images/parabola.png")
+
+fig.show()
