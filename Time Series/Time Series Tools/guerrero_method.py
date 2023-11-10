@@ -31,36 +31,36 @@ def plotting(title, data, x, y, save_file_path, x_label, y_label, text=False, la
     fig.write_image("../images/" + str(save_file_path))
 
     fig.show()
-#
-#
-# # Plot the airline passenger data
-# plotting(title='Airline Passengers', data=data, save_file_path='passengers.png',
-#          x='Month', y='#Passengers', x_label='Date', y_label='Passengers')
-#
-#
-# # Range of lambda values to consider
-# lambda_values = np.linspace(-2, 2, 100)
-#
-# likelihood_values = []
-# for lam in lambda_values:
-#     log_likelihood = boxcox_llf(lam, data['#Passengers'])
-#     likelihood_values.append(log_likelihood)
-#
-# # Create a Plotly figure for the likelihood function
-# fig = px.line(x=lambda_values, y=likelihood_values, labels={'x': 'Lambda', 'y': 'Log Likelihood'})
-# fig.update_layout(template="simple_white", font=dict(size=18), xaxis_title='Lambda',
-#                   yaxis_title='Log Likelihood', title_text='Box-Cox Likelihood Function', width=650,
-#                   title_x=0.5, height=400)
-#
-# # Show the Plotly figure
-# fig.show()
-#
-# # Apply box-cox transform and plot it
-# data['Passengers_box_cox'], lam = boxcox(data['#Passengers'])
-#
-# plotting(title='Airline Passengers', data=data, save_file_path='passenger_box_cox.png',
-#          x='Month', y='Passengers_box_cox', x_label='Date',
-#          y_label='Passengers<br>Box-Cox Transform', text=True, lam=lam)
+
+
+# Plot the airline passenger data
+plotting(title='Airline Passengers', data=data, save_file_path='passengers.png',
+         x='Month', y='#Passengers', x_label='Date', y_label='Passengers')
+
+
+# Range of lambda values to consider
+lambda_values = np.linspace(-2, 2, 100)
+
+likelihood_values = []
+for lam in lambda_values:
+    log_likelihood = boxcox_llf(lam, data['#Passengers'])
+    likelihood_values.append(log_likelihood)
+
+# Create a Plotly figure for the likelihood function
+fig = px.line(x=lambda_values, y=likelihood_values, labels={'x': 'Lambda', 'y': 'Log Likelihood'})
+fig.update_layout(template="simple_white", font=dict(size=18), xaxis_title='Lambda',
+                  yaxis_title='Log Likelihood', title_text='Box-Cox Likelihood Function', width=650,
+                  title_x=0.5, height=400)
+
+# Show the Plotly figure
+fig.show()
+
+# Apply box-cox transform and plot it
+data['Passengers_box_cox'], lam = boxcox(data['#Passengers'])
+
+plotting(title='Airline Passengers', data=data, save_file_path='passenger_box_cox.png',
+         x='Month', y='Passengers_box_cox', x_label='Date',
+         y_label='Passengers<br>Box-Cox Transform', text=True, lam=lam)
 
 
 # Guerrero method
