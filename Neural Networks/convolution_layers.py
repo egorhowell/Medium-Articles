@@ -41,6 +41,7 @@ axs[1].tick_params(which="minor", size=0)
 
 for (i, j), value in np.ndenumerate(flower_image):
     axs[1].text(j, i, int(value), ha='center', va='center', color='black', fontsize=8)
+    
 # Hide the major ticks and labels
 axs[1].tick_params(which="major", bottom=False, left=False, labelbottom=False, labelleft=False)
 axs[1].set_title('Pixel Values Grid')
