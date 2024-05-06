@@ -15,6 +15,7 @@ matplotlib = "^3.4.3"
 scipy = "^1.7.3"
 statsmodels = "^0.13.2"
 hyperopt = "^0.2.5"
+torch = "^2.3.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0.1"
