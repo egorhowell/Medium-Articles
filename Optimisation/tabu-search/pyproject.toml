@@ -2,7 +2,7 @@
 name = "tabu-search"
 version = "0.1.0"
 description = ""
-authors = ["Egor <egor.howell@gousto.co.uk>"]
+authors = ["Egor Howell <egorhowellbusiness@gmail.com>"]
 readme = "README.md"
 packages = [{include = "tabu_search"}]
 
