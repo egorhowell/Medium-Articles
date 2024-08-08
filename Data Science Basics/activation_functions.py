@@ -15,10 +15,16 @@ y = relu(x)
 
 # Graph
 fig = px.line(x=x, y=y)
-fig.update_xaxes(title='x')
-fig.update_yaxes(title='ReLU(x)')
-fig.update_layout(template="simple_white", font=dict(size=18), title_text='ReLU Plot',
-                  width=650, title_x=0.5, height=400)
+fig.update_xaxes(title="x")
+fig.update_yaxes(title="ReLU(x)")
+fig.update_layout(
+    template="simple_white",
+    font=dict(size=18),
+    title_text="ReLU Plot",
+    width=650,
+    title_x=0.5,
+    height=400,
+)
 
 if not os.path.exists("../images"):
     os.mkdir("../images")
@@ -38,10 +44,16 @@ y = sigmoid(x)
 
 # Plot
 fig = px.line(x=x, y=y)
-fig.update_xaxes(title='x')
-fig.update_yaxes(title='sigmoid(x)')
-fig.update_layout(template="simple_white", font=dict(size=18), title_text='Sigmoid Function Plot',
-                  width=650, title_x=0.5, height=400)
+fig.update_xaxes(title="x")
+fig.update_yaxes(title="sigmoid(x)")
+fig.update_layout(
+    template="simple_white",
+    font=dict(size=18),
+    title_text="Sigmoid Function Plot",
+    width=650,
+    title_x=0.5,
+    height=400,
+)
 
 if not os.path.exists("../images"):
     os.mkdir("../images")
@@ -61,10 +73,16 @@ y = tanh(x)
 
 # Plot
 fig = px.line(x=x, y=y)
-fig.update_xaxes(title='x')
-fig.update_yaxes(title='tanh(x)')
-fig.update_layout(template="simple_white", font=dict(size=18), title_text='Tanh Plot',
-                  width=650, title_x=0.5, height=400)
+fig.update_xaxes(title="x")
+fig.update_yaxes(title="tanh(x)")
+fig.update_layout(
+    template="simple_white",
+    font=dict(size=18),
+    title_text="Tanh Plot",
+    width=650,
+    title_x=0.5,
+    height=400,
+)
 
 if not os.path.exists("../images"):
     os.mkdir("../images")
@@ -84,10 +102,16 @@ y = leaky_relu(x)
 
 # Plot
 fig = px.line(x=x, y=y)
-fig.update_xaxes(title='x')
-fig.update_yaxes(title='Leaky ReLU(x)')
-fig.update_layout(template="simple_white", font=dict(size=18), title_text='Leaky ReLU Plot',
-                  width=650, title_x=0.5, height=400)
+fig.update_xaxes(title="x")
+fig.update_yaxes(title="Leaky ReLU(x)")
+fig.update_layout(
+    template="simple_white",
+    font=dict(size=18),
+    title_text="Leaky ReLU Plot",
+    width=650,
+    title_x=0.5,
+    height=400,
+)
 
 if not os.path.exists("../images"):
     os.mkdir("../images")
@@ -98,7 +122,7 @@ fig.show()
 
 #  parabola
 def parabola(x):
-    return 10 * x ** 2
+    return 10 * x**2
 
 
 # x and y values
@@ -107,10 +131,16 @@ y = parabola(x)
 
 # Plot
 fig = px.line(x=x, y=y)
-fig.update_xaxes(title='x')
-fig.update_yaxes(title='10x^2')
-fig.update_layout(template="simple_white", font=dict(size=18), title_text='Example Parabola',
-                  width=650, title_x=0.5, height=400)
+fig.update_xaxes(title="x")
+fig.update_yaxes(title="10x^2")
+fig.update_layout(
+    template="simple_white",
+    font=dict(size=18),
+    title_text="Example Parabola",
+    width=650,
+    title_x=0.5,
+    height=400,
+)
 
 if not os.path.exists("../images"):
     os.mkdir("../images")
@@ -129,10 +159,16 @@ y = elu(x)
 
 # Plot
 fig = px.line(x=x, y=y)
-fig.update_xaxes(title='x')
-fig.update_yaxes(title='ELU(x)')
-fig.update_layout(template="simple_white", font=dict(size=18), title_text='ELU Plot',
-                  width=650, title_x=0.5, height=400)
+fig.update_xaxes(title="x")
+fig.update_yaxes(title="ELU(x)")
+fig.update_layout(
+    template="simple_white",
+    font=dict(size=18),
+    title_text="ELU Plot",
+    width=650,
+    title_x=0.5,
+    height=400,
+)
 
 if not os.path.exists("../images"):
     os.mkdir("../images")

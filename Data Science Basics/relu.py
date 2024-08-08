@@ -6,7 +6,7 @@ import os
 
 # relu function
 def relu(x):
-    return (np.maximum(0, x))
+    return np.maximum(0, x)
 
 
 # Generate data
@@ -15,8 +15,14 @@ y = relu(x)
 
 # Graph
 fig = px.line(x=x, y=y)
-fig.update_layout(template="simple_white", font=dict(size=18), title_text='ReLU',
-                  width=650, title_x=0.5, height=400)
+fig.update_layout(
+    template="simple_white",
+    font=dict(size=18),
+    title_text="ReLU",
+    width=650,
+    title_x=0.5,
+    height=400,
+)
 
 if not os.path.exists("../images"):
     os.mkdir("../images")

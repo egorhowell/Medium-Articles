@@ -1,0 +1,10 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.8.0
+    hooks:
+      - id: black
+        name: Black
+        entry: black
+        language: python
+        types: [python]
+        stages: [commit]

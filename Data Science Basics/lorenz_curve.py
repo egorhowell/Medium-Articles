@@ -32,27 +32,41 @@ perfect_equality_y = perfect_equality
 
 # Plot the Lorenz curve using Plotly
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=fine_income_percentile, y=lorenz_curve_y, mode='lines', name='Lorenz Curve'))
-fig.add_trace(go.Scatter(x=fine_income_percentile, y=perfect_equality_y, mode='lines', name='Perfect Equality', line=dict(dash='dash')))
+fig.add_trace(
+    go.Scatter(
+        x=fine_income_percentile, y=lorenz_curve_y, mode="lines", name="Lorenz Curve"
+    )
+)
+fig.add_trace(
+    go.Scatter(
+        x=fine_income_percentile,
+        y=perfect_equality_y,
+        mode="lines",
+        name="Perfect Equality",
+        line=dict(dash="dash"),
+    )
+)
 
 # Add annotations 'A' and 'B'
 fig.add_annotation(
-    x=60, y=cs(72),
-    text='A',
+    x=60,
+    y=cs(72),
+    text="A",
     showarrow=False,
     font=dict(size=26, color="black"),
 )
 fig.add_annotation(
-    x=75, y=cs(50),
-    text='B',
+    x=75,
+    y=cs(50),
+    text="B",
     showarrow=False,
     font=dict(size=26, color="black"),
 )
 
 fig.update_layout(
-    title='Lorenz Curve',
-    xaxis_title='Cumulative Population (%)',
-    yaxis_title='Cumulative Income (%)',
+    title="Lorenz Curve",
+    xaxis_title="Cumulative Population (%)",
+    yaxis_title="Cumulative Income (%)",
     template="simple_white",
     font=dict(size=16),
     title_x=0.5,
