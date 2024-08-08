@@ -1,7 +1,8 @@
 # Import packages
+import os
+
 import numpy as np
 import plotly.express as px
-import os
 
 
 # RelU function

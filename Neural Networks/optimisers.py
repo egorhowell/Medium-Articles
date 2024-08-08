@@ -1,5 +1,5 @@
-import torch
 import plotly.graph_objects as go
+import torch
 
 
 # Function to perform optimization and track theta
@@ -24,11 +24,20 @@ iterations = 1000
 # Optimiser configurations
 optim_configs = {
     "Regular GD": {"optimizer_class": torch.optim.SGD, "lr": learning_rate},
-    "Momentum": {"optimizer_class": torch.optim.SGD, "lr": learning_rate, "momentum": 0.9},
-    "Nesterov": {"optimizer_class": torch.optim.SGD, "lr": learning_rate, "momentum": 0.9, "nesterov": True},
+    "Momentum": {
+        "optimizer_class": torch.optim.SGD,
+        "lr": learning_rate,
+        "momentum": 0.9,
+    },
+    "Nesterov": {
+        "optimizer_class": torch.optim.SGD,
+        "lr": learning_rate,
+        "momentum": 0.9,
+        "nesterov": True,
+    },
     "Adagrad": {"optimizer_class": torch.optim.Adagrad, "lr": learning_rate},
     "Adam": {"optimizer_class": torch.optim.Adam, "lr": learning_rate},
-    "RMSprop": {"optimizer_class": torch.optim.RMSprop, "lr": learning_rate}
+    "RMSprop": {"optimizer_class": torch.optim.RMSprop, "lr": learning_rate},
 }
 
 # Run optimization for each optimizer and collect theta values
@@ -40,18 +49,24 @@ for name, config in optim_configs.items():
 fig = go.Figure()
 
 for optimiser, theta_values in results.items():
-    fig.add_trace(go.Scatter(x=list(range(iterations)), y=theta_values, mode='lines', name=optimiser))
+    fig.add_trace(
+        go.Scatter(
+            x=list(range(iterations)), y=theta_values, mode="lines", name=optimiser
+        )
+    )
 
-fig.update_layout(title="Optimiser Performance Comparison",
-                  xaxis_title="Iteration Number",
-                  yaxis_title="Value of Theta",
-                  legend_title="Optimisers",
-                  template="plotly_white",
-                  width=900,
-                  height=600,
-                  font=dict(size=18),
-                  xaxis=dict(tickfont=dict(size=16)),
-                  yaxis=dict(tickfont=dict(size=16)),
-                  title_font_size=24)
+fig.update_layout(
+    title="Optimiser Performance Comparison",
+    xaxis_title="Iteration Number",
+    yaxis_title="Value of Theta",
+    legend_title="Optimisers",
+    template="plotly_white",
+    width=900,
+    height=600,
+    font=dict(size=18),
+    xaxis=dict(tickfont=dict(size=16)),
+    yaxis=dict(tickfont=dict(size=16)),
+    title_font_size=24,
+)
 
 fig.show()

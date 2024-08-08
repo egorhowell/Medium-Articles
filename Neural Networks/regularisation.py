@@ -1,11 +1,11 @@
+import plotly.graph_objects as go
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-import plotly.graph_objects as go
+from torch.utils.data import DataLoader, TensorDataset
 
 
 class Model(nn.Module):
@@ -44,8 +44,10 @@ def validate(model, data_loader, criterion):
 
 
 # Main Training Function with Early Stopping
-def train_model(model, train_loader, val_loader, optimiser, criterion, epochs, patience):
-    best_val_loss = float('inf')
+def train_model(
+    model, train_loader, val_loader, optimiser, criterion, epochs, patience
+):
+    best_val_loss = float("inf")
     epochs_no_improve = 0
     train_losses = []
     val_losses = []
@@ -79,17 +81,41 @@ def train_model(model, train_loader, val_loader, optimiser, criterion, epochs, p
 
     # Plot the early stopping
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=list(range(1, epochs)), y=train_losses, mode='lines', name='Training Loss'))
-    fig.add_trace(go.Scatter(x=list(range(1, epochs)), y=val_losses, mode='lines', name='Validation Loss'))
+    fig.add_trace(
+        go.Scatter(
+            x=list(range(1, epochs)), y=train_losses, mode="lines", name="Training Loss"
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=list(range(1, epochs)), y=val_losses, mode="lines", name="Validation Loss"
+        )
+    )
 
     if early_stop:
         fig.add_vline(x=early_stop, line_width=3, line_dash="dash", line_color="red")
-        fig.add_annotation(x=early_stop, y=max(max(train_losses), max(val_losses)),
-                           text="Early Stopping", showarrow=True, arrowhead=1, ax=-50, ay=-100)
+        fig.add_annotation(
+            x=early_stop,
+            y=max(max(train_losses), max(val_losses)),
+            text="Early Stopping",
+            showarrow=True,
+            arrowhead=1,
+            ax=-50,
+            ay=-100,
+        )
 
-    fig.update_layout(title='Early Stopping Example', xaxis_title='Epoch', yaxis_title='Loss', template='plotly_white',
-                      width=900, height=600, font=dict(size=18), xaxis=dict(tickfont=dict(size=16)),
-                      yaxis=dict(tickfont=dict(size=16)), title_font_size=24)
+    fig.update_layout(
+        title="Early Stopping Example",
+        xaxis_title="Epoch",
+        yaxis_title="Loss",
+        template="plotly_white",
+        width=900,
+        height=600,
+        font=dict(size=18),
+        xaxis=dict(tickfont=dict(size=16)),
+        yaxis=dict(tickfont=dict(size=16)),
+        title_font_size=24,
+    )
     fig.show()
 
     return train_losses, val_losses
@@ -124,4 +150,6 @@ optimiser = optim.Adam(model.parameters(), lr=0.001)
 criterion = nn.CrossEntropyLoss()
 
 # Train and visualise results
-train_losses, val_losses = train_model(model, train_loader, val_loader, optimiser, criterion, epochs=800, patience=10)
+train_losses, val_losses = train_model(
+    model, train_loader, val_loader, optimiser, criterion, epochs=800, patience=10
+)

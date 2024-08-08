@@ -1,10 +1,9 @@
 repos:
-  - repo: https://github.com/psf/black
-    rev: 24.8.0
+  - repo: local
     hooks:
-      - id: black
-        name: Black
-        entry: black
+      - id: lint
+        name: lint
+        entry: make lint
         language: python
         types: [python]
         stages: [commit]

@@ -6,10 +6,8 @@ from typing import List, Tuple
 
 import numpy as np
 import plotly.express as px
-from faker import Faker
-
 from brute_force_search import BruteForceSearch
-
+from faker import Faker
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +43,7 @@ def run_brute_force(n_cities: int) -> float:
     best_distance, best_route = bfs.run()
 
     end_time = time.time()
-    elapsed_time = (end_time - start_time)
+    elapsed_time = end_time - start_time
 
     logger.info(f"Elapsed time for {n_cities} cities: {elapsed_time:.4f} seconds")
 
@@ -67,11 +65,11 @@ def main():
         title_text="Combinatorial Explosion Example",
         title_x=0.5,
         font=dict(size=18),
-        xaxis=dict(title='Number of Cities', titlefont=dict(size=18)),
-        yaxis=dict(title='Duration of Brute-Force (Seconds)', titlefont=dict(size=18)),
+        xaxis=dict(title="Number of Cities", titlefont=dict(size=18)),
+        yaxis=dict(title="Duration of Brute-Force (Seconds)", titlefont=dict(size=18)),
         width=800,
         height=500,
-        template='simple_white',
+        template="simple_white",
     )
 
     if not os.path.exists("../images"):

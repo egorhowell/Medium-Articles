@@ -53,5 +53,3 @@ optimizer.step()
 
 # Perform the forward pass for update values
 output = model(inputs)
-
-

@@ -1,28 +1,29 @@
 # Import packages
+import os
+import random
+
+import numpy as np
 import pandas as pd
 import plotly.express as px
-from plotly.subplots import make_subplots
-import numpy as np
-import random
 import plotly.graph_objects as go
-import os
+from plotly.subplots import make_subplots
 
 # Generate random coordinates
 x = list(np.random.randint(0, 15, 20))
 y = list(np.random.randint(0, 15, 20))
 
 # Label each city from the alphabet
-letters_org = [chr(i) for i in range(ord('a'), ord('z') + 1)]
-letters = letters_org[:len(y)]
+letters_org = [chr(i) for i in range(ord("a"), ord("z") + 1)]
+letters = letters_org[: len(y)]
 
 # Make last city the origin city
-df = pd.DataFrame(list(zip(x, y, letters)), columns=['x', 'y', 'point'])
+df = pd.DataFrame(list(zip(x, y, letters)), columns=["x", "y", "point"])
 df = df.append(df.iloc[0]).reset_index()
 
 # Plot the city map
-fig = px.line(df, x='x', y='y', text='point', title='City Map')
+fig = px.line(df, x="x", y="y", text="point", title="City Map")
 fig.update_layout(template="simple_white", width=750, title_x=0.5, font=dict(size=18))
-fig.update_traces(textposition='top center')
+fig.update_traces(textposition="top center")
 
 if not os.path.exists("../images"):
     os.mkdir("../images")
@@ -42,19 +43,23 @@ class SA:
     def total_distance(df):
 
         def euclidean_distance(x1, x2, y1, y2):
-            return np.sqrt((x1-x2)**2+(y1-y2)**2)
+            return np.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
 
         distance = 0
         for idx in range(0, len(df)):
             if idx + 1 >= len(df):
                 break
-            distance += euclidean_distance(df['x'].loc[idx], df['x'].loc[idx+1],
-                                           df['y'].loc[idx], df['y'].loc[idx+1])
+            distance += euclidean_distance(
+                df["x"].loc[idx],
+                df["x"].loc[idx + 1],
+                df["y"].loc[idx],
+                df["y"].loc[idx + 1],
+            )
         return distance
 
     @staticmethod
     def cooling_temp(gamma, temp):
-        return gamma*temp
+        return gamma * temp
 
     @staticmethod
     def check_accept(temp, new_solution, current_solution):
@@ -129,12 +134,21 @@ scores, best_scores, temps, best_df = sa.run()
 # Plot the results
 fig = go.Figure()
 fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(go.Scatter(x=list(range(iterations)), y=scores, name='Current Score'))
-fig.add_trace(go.Scatter(x=list(range(iterations)), y=best_scores, name='Best Score'))
-fig.add_trace(go.Scatter(x=list(range(iterations)), y=temps, name='Temperature'), secondary_y=True)
-fig.update_layout(template="simple_white", font=dict(size=15), title_text='Simulated Annealing',
-                  width=800, title_x=0.5, height=450, xaxis_title='Iteration',
-                  yaxis_title='Distance')
+fig.add_trace(go.Scatter(x=list(range(iterations)), y=scores, name="Current Score"))
+fig.add_trace(go.Scatter(x=list(range(iterations)), y=best_scores, name="Best Score"))
+fig.add_trace(
+    go.Scatter(x=list(range(iterations)), y=temps, name="Temperature"), secondary_y=True
+)
+fig.update_layout(
+    template="simple_white",
+    font=dict(size=15),
+    title_text="Simulated Annealing",
+    width=800,
+    title_x=0.5,
+    height=450,
+    xaxis_title="Iteration",
+    yaxis_title="Distance",
+)
 fig.update_yaxes(title_text="Temperature", secondary_y=True, automargin=True)
 fig.update_xaxes(automargin=True)
 
@@ -145,9 +159,9 @@ fig.write_image("../images/solution.png")
 fig.show()
 
 # Plot resultant map
-fig = px.line(best_df, x='x', y='y', text='point', title='Best City Map')
+fig = px.line(best_df, x="x", y="y", text="point", title="Best City Map")
 fig.update_layout(template="simple_white", width=750, title_x=0.5, font=dict(size=18))
-fig.update_traces(textposition='top center')
+fig.update_traces(textposition="top center")
 
 if not os.path.exists("../images"):
     os.mkdir("../images")

@@ -13,7 +13,7 @@ k = list(range(0, n + 1))
 pmf = hypergeom.pmf(k, N, K, n)
 
 # Plot the PMF
-fig = go.Figure(data=[go.Bar(x=k, y=pmf, marker_color='rgba(176, 224, 230)')])
+fig = go.Figure(data=[go.Bar(x=k, y=pmf, marker_color="rgba(176, 224, 230)")])
 fig.update_layout(
     title="Hypergeometric Distribution Example",
     xaxis_title="Number of Kings",
@@ -22,7 +22,7 @@ fig.update_layout(
     height=400,
     template="plotly_white",
     margin=dict(l=80, r=40, t=60, b=40),
-    title_x=0.5
+    title_x=0.5,
 )
 fig.update_xaxes(range=[-0.5, K + 1.5])
 fig.show()
@@ -39,7 +39,7 @@ k = list(range(0, K + 1))
 pmf = hypergeom.pmf(k, N, K, n)
 
 # Plot the PMF
-fig = go.Figure(data=[go.Bar(x=k, y=pmf, marker_color='rgba(176, 224, 230)')])
+fig = go.Figure(data=[go.Bar(x=k, y=pmf, marker_color="rgba(176, 224, 230)")])
 fig.update_layout(
     title="Hypergeometric Distribution Example",
     xaxis_title="Number of Spades",
@@ -48,7 +48,7 @@ fig.update_layout(
     height=400,
     template="plotly_white",
     margin=dict(l=80, r=40, t=60, b=40),
-    title_x=0.5
+    title_x=0.5,
 )
 fig.update_xaxes(range=[-0.5, K + 0.5])
 fig.show()

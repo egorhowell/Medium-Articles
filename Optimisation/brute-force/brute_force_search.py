@@ -21,7 +21,9 @@ class BruteForceSearch:
 
         self.cities = cities
 
-    def _calculate_city_distance(self, city1: Tuple[str, float, float], city2: Tuple[str, float, float]) -> float:
+    def _calculate_city_distance(
+        self, city1: Tuple[str, float, float], city2: Tuple[str, float, float]
+    ) -> float:
         """
         Calculates the Euclidean distance between two cities represented as tuples (name, x, y).
 
@@ -50,7 +52,10 @@ class BruteForceSearch:
         if not route:
             raise ValueError("Cannot calculate the distance for an empty or none route")
 
-        total_distance = sum(self._calculate_city_distance(route[i], route[i + 1]) for i in range(len(route) - 1))
+        total_distance = sum(
+            self._calculate_city_distance(route[i], route[i + 1])
+            for i in range(len(route) - 1)
+        )
         return total_distance
 
     def run(self) -> Tuple[float, List[Tuple[str, float, float]]]:
@@ -62,7 +67,9 @@ class BruteForceSearch:
             A tuple containing the total distance of the optimal route and the corresponding route.
         """
         if len(self.cities) < 3:
-            raise ValueError("There must be at least 3 cities to compute the optimal route")
+            raise ValueError(
+                "There must be at least 3 cities to compute the optimal route"
+            )
 
         # Generate all permutations of the remaining cities
         remaining_cities = self.cities[1:-1]
@@ -76,7 +83,10 @@ class BruteForceSearch:
         permutations = [[start] + list(p) + [end] for p in perms]
 
         # Compute all the possible solutions
-        solutions = [(self._calculate_route_distance(route), list(route)) for route in permutations]
+        solutions = [
+            (self._calculate_route_distance(route), list(route))
+            for route in permutations
+        ]
 
         # Get the best solution
         best_solution = min(solutions, key=lambda x: x[0])

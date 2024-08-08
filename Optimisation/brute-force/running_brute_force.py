@@ -1,9 +1,10 @@
 # Import packages
-import plotly.graph_objects as go
-import numpy as np
-from faker import Faker
-from brute_force_search import BruteForceSearch
 import os
+
+import numpy as np
+import plotly.graph_objects as go
+from brute_force_search import BruteForceSearch
+from faker import Faker
 
 # Generate some random city data
 n_cities = 6
@@ -26,30 +27,48 @@ cities.append(cities[0])
 fig = go.Figure()
 
 # Add trace for cities
-fig.add_trace(go.Scatter(x=x, y=y, mode='lines+markers+text',
-                         text=labels, textposition="top center",
-                         textfont=dict(color='black'),
-                         marker=dict(size=8, color='blue'),
-                         line=dict(color='blue', width=1),
-                         showlegend=False))
+fig.add_trace(
+    go.Scatter(
+        x=x,
+        y=y,
+        mode="lines+markers+text",
+        text=labels,
+        textposition="top center",
+        textfont=dict(color="black"),
+        marker=dict(size=8, color="blue"),
+        line=dict(color="blue", width=1),
+        showlegend=False,
+    )
+)
 
 # Add marker for the starting point
-fig.add_trace(go.Scatter(x=[x[0]], y=[y[0]], mode='markers',
-                         marker=dict(size=15, color='red', symbol='circle'),
-                         name='Origin City'))
+fig.add_trace(
+    go.Scatter(
+        x=[x[0]],
+        y=[y[0]],
+        mode="markers",
+        marker=dict(size=15, color="red", symbol="circle"),
+        name="Origin City",
+    )
+)
 
 # Style layout
-fig.update_layout(title_text="Simulated Cities: Initial Solution",
-                  title_x=0.5, font=dict(size=18),
-                  xaxis=dict(title='X-coordinate', titlefont=dict(size=16)),
-                  yaxis=dict(title='Y-coordinate', titlefont=dict(size=16)),
-                  width=800, height=500, template='simple_white')
+fig.update_layout(
+    title_text="Simulated Cities: Initial Solution",
+    title_x=0.5,
+    font=dict(size=18),
+    xaxis=dict(title="X-coordinate", titlefont=dict(size=16)),
+    yaxis=dict(title="Y-coordinate", titlefont=dict(size=16)),
+    width=800,
+    height=500,
+    template="simple_white",
+)
 
-fig.update_traces(textposition='top center', textfont=dict(size=14))
+fig.update_traces(textposition="top center", textfont=dict(size=14))
 
 if not os.path.exists("../images"):
     os.mkdir("../images")
-fig.write_image("../images/" + str('initial_solution.png'))
+fig.write_image("../images/" + str("initial_solution.png"))
 
 fig.show()
 
@@ -64,28 +83,47 @@ labels, x, y = [[value[i] for value in best_route] for i in range(3)]
 fig = go.Figure()
 
 # Add trace for cities
-fig.add_trace(go.Scatter(x=x, y=y, mode='lines+markers+text',
-                         text=labels, textposition="top center",
-                         textfont=dict(color='black'),
-                         marker=dict(size=8, color='blue'),
-                         line=dict(color='blue', width=1),
-                         showlegend=False))
+fig.add_trace(
+    go.Scatter(
+        x=x,
+        y=y,
+        mode="lines+markers+text",
+        text=labels,
+        textposition="top center",
+        textfont=dict(color="black"),
+        marker=dict(size=8, color="blue"),
+        line=dict(color="blue", width=1),
+        showlegend=False,
+    )
+)
 
 # Add marker for the starting point
-fig.add_trace(go.Scatter(x=[x[0]], y=[y[0]], mode='markers',
-                         marker=dict(size=15, color='red', symbol='circle'), name='Origin City'))
+fig.add_trace(
+    go.Scatter(
+        x=[x[0]],
+        y=[y[0]],
+        mode="markers",
+        marker=dict(size=15, color="red", symbol="circle"),
+        name="Origin City",
+    )
+)
 
 # Style layout
-fig.update_layout(title_text="Simulated Cities: Best Found Solution",
-                  title_x=0.5, font=dict(size=18),
-                  xaxis=dict(title='X-coordinate', titlefont=dict(size=16)),
-                  yaxis=dict(title='Y-coordinate', titlefont=dict(size=16)),
-                  width=800, height=500, template='simple_white')
+fig.update_layout(
+    title_text="Simulated Cities: Best Found Solution",
+    title_x=0.5,
+    font=dict(size=18),
+    xaxis=dict(title="X-coordinate", titlefont=dict(size=16)),
+    yaxis=dict(title="Y-coordinate", titlefont=dict(size=16)),
+    width=800,
+    height=500,
+    template="simple_white",
+)
 
-fig.update_traces(textposition='top center', textfont=dict(size=14))
+fig.update_traces(textposition="top center", textfont=dict(size=14))
 
 if not os.path.exists("../images"):
     os.mkdir("../images")
-fig.write_image("../images/" + str('best_solution.png'))
+fig.write_image("../images/" + str("best_solution.png"))
 
 fig.show()

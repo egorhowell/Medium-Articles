@@ -1,6 +1,7 @@
 # Import packages
-from itertools import product
 import time
+from itertools import product
+
 import numpy as np
 
 # Declare our variables
@@ -8,8 +9,54 @@ num_items = 22
 max_weight = 800
 best_value = 0
 best_combination = np.zeros(num_items)
-weight = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220]
-value = [10, 2, 3, 4, 20, 68, 75, 58, 9, 29, 56, 43, 38, 91, 27, 33, 200, 18, 300, 18, 400, 200]
+weight = [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+]
+value = [
+    10,
+    2,
+    3,
+    4,
+    20,
+    68,
+    75,
+    58,
+    9,
+    29,
+    56,
+    43,
+    38,
+    91,
+    27,
+    33,
+    200,
+    18,
+    300,
+    18,
+    400,
+    200,
+]
 
 start_time = time.time()
 

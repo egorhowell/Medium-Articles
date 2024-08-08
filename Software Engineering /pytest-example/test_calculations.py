@@ -1,5 +1,5 @@
-from calculations import Calculations
 import pytest
+from calculations import Calculations
 
 
 @pytest.fixture
@@ -9,8 +9,9 @@ def calculations():
 
 class TestCalculations:
 
-    @pytest.mark.parametrize("a, b, expected_output",
-                             [(1, 3, 4), (10, 50, 60), (100, 0, 100)])
+    @pytest.mark.parametrize(
+        "a, b, expected_output", [(1, 3, 4), (10, 50, 60), (100, 0, 100)]
+    )
     def test_sum(self, a, b, expected_output):
         assert Calculations(a, b).sum() == expected_output
 

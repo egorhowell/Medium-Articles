@@ -35,7 +35,9 @@ optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 for epoch in range(1000):
     optimizer.zero_grad()
-    output = model(train.unsqueeze(0)).squeeze()  # Add batch dimension and squeeze to match target shape
+    output = model(
+        train.unsqueeze(0)
+    ).squeeze()  # Add batch dimension and squeeze to match target shape
     loss = criterion(output, target)
     loss.backward()
     optimizer.step()
@@ -48,7 +50,8 @@ def predict(model, input_seq):
         output = model(input_seq).squeeze().item()
     return output
 
+
 # Example Test Set
 test = [2, 3, 4]
 predicted = predict(model, test)
-print(f'Input: {test}, Predicted Next Number: {predicted:.2f}')
+print(f"Input: {test}, Predicted Next Number: {predicted:.2f}")

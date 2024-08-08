@@ -1,8 +1,8 @@
 # Import Packages
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 
 # Load dataset
 iris = load_iris()
@@ -20,4 +20,4 @@ model.fit(x_train, y_train)
 preds = model.predict(x_test)
 
 # Get accuracy
-print(f'Accuracy: {accuracy_score(y_test, preds)}')
+print(f"Accuracy: {accuracy_score(y_test, preds)}")
