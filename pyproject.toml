@@ -21,6 +21,7 @@ hyperopt = "^0.2.7"
 plotly = "^5.22.0"
 pre-commit = "^3.8.0"
 flake8 = "^7.1.1"
+dynaconf = "^3.2.10"
 
 
 [build-system]

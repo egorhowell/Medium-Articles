@@ -1,0 +1,14 @@
+[default]
+app_name = "My Awesome App"
+debug = true
+database_url = "sqlite:///default.db"
+
+[production]
+app_name = "My Awesome App (Production)"
+debug = false
+database_url = "postgres://prod_user:prod_pass@prod_host/prod_db"
+
+[development]
+app_name = "My Awesome App (Development)"
+debug = true
+database_url = "sqlite:///dev.db"
