@@ -58,11 +58,11 @@ def plot_forecasts(forecasts: list[float], title: str, save_path: str) -> None:
     fig.add_trace(go.Scatter(x=test["Month"], y=forecasts, name="Forecast"))
     fig.update_layout(
         template="simple_white",
-        font=dict(size=18),
+        font=dict(size=15),
         title_text=title,
-        width=650,
+        width=900,
         title_x=0.5,
-        height=400,
+        height=500,
         xaxis_title="Date",
         yaxis_title="Passenger Volume",
     )
